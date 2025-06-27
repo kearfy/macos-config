@@ -125,6 +125,9 @@ install_extension "bradlc.vscode-tailwindcss"
 install_extension "oven.bun-vscode"
 install_extension "tauri-apps.tauri-vscode"
 install_extension "tamuratak.vscode-lezer"
+install_extension "ms-python.python"
+install_extension "ms-python.vscode-pylance"
+install_extension "ms-python.debugpy"
 
 # GitHub and productivity
 install_extension "github.copilot"
