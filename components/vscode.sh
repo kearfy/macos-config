@@ -68,12 +68,6 @@ jq '. + {
 # Install extensions
 echo "Installing VSCode extensions..."
 
-# Ensure VSCode is not running to prevent conflicts
-if pgrep -f "Visual Studio Code" > /dev/null; then
-    echo "VSCode is running. Please close VSCode and re-run this script."
-    echo "You can run just the VSCode configuration with: bash components/vscode.sh"
-    exit 1
-fi
 
 # Function to install extension with retry logic
 install_extension() {

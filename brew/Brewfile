@@ -12,6 +12,7 @@ brew "thefuck"
 brew "direnv"
 brew "dockutil"
 brew "jq"
+brew "coreutils"
 
 # Node.js ecosystem
 brew "node@22"
