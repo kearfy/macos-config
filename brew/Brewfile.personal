@@ -1,0 +1,7 @@
+# Personal profile specific applications
+# Java for Minecraft (OpenJDK)
+brew "openjdk@21"
+
+# Messaging apps
+mas "WhatsApp Messenger", id: 310633997
+mas "Telegram", id: 747648890

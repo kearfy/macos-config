@@ -1,0 +1,57 @@
+# Brewfile - Package manager configuration for macOS
+# Run with: brew bundle
+
+# Command line tools and utilities
+brew "git"
+brew "wget"
+brew "lazygit"
+brew "python3"
+brew "llvm"
+brew "autojump"
+brew "thefuck"
+brew "direnv"
+brew "dockutil"
+brew "jq"
+
+# Node.js ecosystem
+brew "node@22"
+brew "pnpm"
+brew "yarn"
+
+# Rust development
+brew "rust"
+# Note: rust-analyzer and wasm targets will need to be installed separately with rustup
+
+# JavaScript/TypeScript tools
+brew "biome"
+
+# GUI Applications (Casks)
+cask "iterm2"
+cask "visual-studio-code"
+cask "1password"
+cask "zed"
+cask "betterdisplay"
+cask "discord"
+cask "figma"
+cask "notion"
+cask "postman"
+cask "airbuddy"
+cask "chatgpt"
+cask "google-chrome"
+
+# Work profile applications (installed conditionally)
+# cask "linear-linear"  # Work only
+# cask "slack"          # Work only
+
+# Personal profile applications (installed conditionally)
+# cask "polymc"         # Personal only
+
+# Mac App Store applications
+mas "1Password for Safari", id: 1569813296
+mas "Flighty – Live Flight Tracker", id: 1358823008
+mas "Home Assistant", id: 1099568401
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Word", id: 462054704
+mas "Reeder Classic.", id: 1529448980
+mas "TestFlight", id: 899247664

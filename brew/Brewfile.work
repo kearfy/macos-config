@@ -1,0 +1,3 @@
+# Work profile specific applications
+cask "linear-linear"
+cask "slack"
