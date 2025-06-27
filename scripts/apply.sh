@@ -51,6 +51,9 @@ bash "$PROJECT_ROOT/components/macos.sh"
 echo "Running wallpaper configuration..."
 bash "$PROJECT_ROOT/components/wallpaper.sh"
 
+echo "Running iTerm2 configuration..."
+bash "$PROJECT_ROOT/components/iterm2.sh"
+
 echo "Running VSCode configuration..."
 bash "$PROJECT_ROOT/components/vscode.sh"
 
