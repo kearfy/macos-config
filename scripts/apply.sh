@@ -48,6 +48,9 @@ bash "$PROJECT_ROOT/components/surreal.sh"
 echo "Running macOS system configuration..."
 bash "$PROJECT_ROOT/components/macos.sh"
 
+echo "Running wallpaper configuration..."
+bash "$PROJECT_ROOT/components/wallpaper.sh"
+
 echo "Running VSCode configuration..."
 bash "$PROJECT_ROOT/components/vscode.sh"
 

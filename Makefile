@@ -1,9 +1,10 @@
-.PHONY: apply full help profile status
+.PHONY: apply full help profile status wallpaper
 .DEFAULT_GOAL := help
 
 help:
 	@echo "Available targets:"
-	@echo "  profile <n> - Set profile (personal or work)"
+	@echo "  profile <n>    - Set profile (personal or work)"
+	@echo "  wallpaper <n>  - Set wallpaper (use filename from wallpapers/ directory)"
 	@echo "  status         - Show current profile and status"
 	@echo "  apply          - Apply macOS configuration (default, no sudo commands)"
 	@echo "  full           - Apply full macOS configuration (includes system-level settings)"
@@ -29,6 +30,19 @@ profile:
 
 personal work:
 	@# These targets are handled by the profile target above
+
+wallpaper:
+	@bash scripts/wallpaper.sh "$(word 2,$(MAKECMDGOALS))"
+
+# Handle wallpaper filename arguments - make any additional arguments no-ops
+%:
+	@# Catch-all rule to handle additional arguments as no-ops
+	@if [ "$(firstword $(MAKECMDGOALS))" = "wallpaper" ] || [ "$(firstword $(MAKECMDGOALS))" = "profile" ]; then \
+		: ; \
+	else \
+		echo "Unknown target: $@"; \
+		exit 1; \
+	fi
 
 apply:
 	@bash scripts/apply.sh
