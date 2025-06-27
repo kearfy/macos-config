@@ -13,6 +13,7 @@ brew "direnv"
 brew "dockutil"
 brew "jq"
 brew "coreutils"
+brew "defaultbrowser"
 
 # Node.js ecosystem
 brew "node@22"

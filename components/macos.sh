@@ -131,6 +131,18 @@ defaults write com.apple.Safari AutoFillFromAddressBook -bool false 2>/dev/null 
 defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false 2>/dev/null || true
 defaults write NSGlobalDomain com.apple.AutoFillPasswords -bool false 2>/dev/null || true
 
+# Default Browser Settings
+echo "Setting Safari as default browser..."
+# Check if defaultbrowser utility is available (installed via Homebrew)
+if command -v defaultbrowser &> /dev/null; then
+    defaultbrowser safari
+    echo "Safari set as default browser using defaultbrowser utility"
+else
+    echo "❌ Error: defaultbrowser utility not found"
+    echo "Please install it with: brew install defaultbrowser"
+    echo "Or manually set Safari as default browser in System Settings → Desktop & Dock → Default web browser"
+fi
+
 # Window Manager Settings
 echo "Configuring Window Manager settings..."
 defaults write com.apple.WindowManager HideDesktop -bool true 2>/dev/null || true

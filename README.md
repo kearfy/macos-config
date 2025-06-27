@@ -176,9 +176,12 @@ Some setup steps cannot be automated and require manual intervention:
 2. **Safari AutoFill (if needed):**
    - If Safari still shows autofill options, manually disable them in Safari → Settings → AutoFill
 
-3. **VSCode:** Sign in to GitHub/Microsoft accounts for settings sync
+3. **Default Browser (if automatic setting fails):**
+   - If Safari isn't set as the default browser automatically, go to System Settings → Desktop & Dock → Default web browser → Safari
 
-4. **System Restart:** Some system settings may require a restart to take full effect
+4. **VSCode:** Sign in to GitHub/Microsoft accounts for settings sync
+
+5. **System Restart:** Some system settings may require a restart to take full effect
 
 ### Optional Manual Configurations
 

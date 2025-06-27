@@ -68,10 +68,20 @@ jq '. + {
 # Install extensions
 echo "Installing VSCode extensions..."
 
+# Get list of installed extensions once to avoid SIGPIPE errors
+echo "Checking currently installed extensions..."
+INSTALLED_EXTENSIONS=$(code --list-extensions 2>/dev/null || echo "")
 
 # Function to install extension with retry logic
 install_extension() {
     local ext_id="$1"
+    
+    # Check if extension is already installed using cached list
+    if echo "$INSTALLED_EXTENSIONS" | grep -q "^${ext_id}$"; then
+        echo "✓ Extension $ext_id is already installed"
+        return 0
+    fi
+    
     local attempts=3
     local count=0
     
