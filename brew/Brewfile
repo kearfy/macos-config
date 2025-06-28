@@ -21,7 +21,7 @@ brew "coreutils"
 brew "defaultbrowser"
 
 # Node.js ecosystem
-brew "node@22"
+brew "node"
 brew "pnpm"
 brew "yarn"
 
