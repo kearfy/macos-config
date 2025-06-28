@@ -45,6 +45,7 @@ cask "postman"
 cask "airbuddy"
 cask "chatgpt"
 cask "google-chrome"
+cask "insta360-studio"
 
 # Work profile applications (installed conditionally)
 # cask "linear-linear"  # Work only
