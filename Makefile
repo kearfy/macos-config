@@ -1,8 +1,9 @@
-.PHONY: apply full help profile status wallpaper
+.PHONY: apply full help init profile status wallpaper
 .DEFAULT_GOAL := help
 
 help:
 	@echo "Available targets:"
+	@echo "  init           - Run initial setup wizard"
 	@echo "  profile <n>    - Set profile (personal or work)"
 	@echo "  wallpaper <n>  - Set wallpaper (use filename from wallpapers/ directory)"
 	@echo "  status         - Show current profile and status"
@@ -18,6 +19,9 @@ help:
 
 status:
 	@bash scripts/status.sh
+
+init:
+	@bash scripts/init.sh
 
 profile:
 	@if [ "$(word 2,$(MAKECMDGOALS))" != "" ]; then \

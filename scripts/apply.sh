@@ -1,4 +1,15 @@
-#!/bin/bash
+#!/bin# Check if profile is set
+if [ ! -f "$PROJECT_ROOT/.profile" ]; then
+    echo "❌ No profile set. Running initial setup..."
+    echo ""
+    bash "$SCRIPT_DIR/init.sh"
+    echo ""
+    # Check again after init
+    if [ ! -f "$PROJECT_ROOT/.profile" ]; then
+        echo "❌ Setup was not completed. Exiting."
+        exit 1
+    fi
+fi
 
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
