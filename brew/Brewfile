@@ -46,6 +46,7 @@ cask "airbuddy"
 cask "chatgpt"
 cask "google-chrome"
 cask "insta360-link-controller"
+cask "docker"
 
 # Work profile applications (installed conditionally)
 # cask "linear-linear"  # Work only
