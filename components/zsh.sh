@@ -73,8 +73,12 @@ alias lg="lazygit"
 alias sr="surreal sql --conn memory --user root --pass root --ns test --db test --pretty"
 
 # Environment variables
-export CC=/opt/homebrew/Cellar/llvm/19.1.6/bin/clang
-export AR=/opt/homebrew/Cellar/llvm/19.1.6/bin/llvm-ar
+# Dynamically find the latest LLVM version installed by Homebrew
+if [ -d "/opt/homebrew/Cellar/llvm" ]; then
+    LLVM_VERSION=$(ls /opt/homebrew/Cellar/llvm/ | sort -V | tail -n 1)
+    export CC=/opt/homebrew/Cellar/llvm/$LLVM_VERSION/bin/clang
+    export AR=/opt/homebrew/Cellar/llvm/$LLVM_VERSION/bin/llvm-ar
+fi
 export PATH=/opt/homebrew/opt/llvm/bin:/Users/micha/.cargo/bin:$PATH
 
 # Additional PATH exports (from other components)
