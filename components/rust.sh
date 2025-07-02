@@ -7,10 +7,37 @@ if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
-# Check if Rust is installed
+# Check if rustup-init is available and run initial setup
+if command -v rustup-init &> /dev/null && ! command -v rustup &> /dev/null; then
+    echo "Running rustup-init to set up Rust toolchain..."
+    rustup-init -y --no-modify-path
+    source "$HOME/.cargo/env"
+    echo "Rust toolchain initialized"
+elif ! command -v rustup &> /dev/null; then
+    echo "Neither rustup nor rustup-init found. Installing rustup..."
+    # Fallback: Install rustup directly
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+    source "$HOME/.cargo/env"
+    echo "rustup installed successfully"
+fi
+
+# Check if Rust is now available
 if ! command -v rustc &> /dev/null; then
-    echo "Rust is not installed. Please run 'brew bundle' first."
+    echo "❌ Rust installation failed. Please install Rust manually."
     exit 1
+fi
+
+echo "Using Rust version: $(rustc --version)"
+
+# Ensure rustup has a default toolchain configured
+# Check if rustup can run without errors, if not, set up default toolchain
+echo "Checking rustup configuration..."
+if ! rustup default &> /dev/null; then
+    echo "Setting up default Rust toolchain..."
+    rustup default stable
+    echo "Default toolchain set to stable"
+else
+    echo "Rustup default toolchain already configured"
 fi
 
 # Add WASM targets

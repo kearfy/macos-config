@@ -26,8 +26,8 @@ brew "pnpm"
 brew "yarn"
 
 # Rust development
-brew "rust"
-# Note: rust-analyzer and wasm targets will need to be installed separately with rustup
+brew "rustup-init"
+# Note: Run rustup-init and then use rustup to manage Rust toolchains
 
 # JavaScript/TypeScript tools
 brew "biome"
