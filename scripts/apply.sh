@@ -31,43 +31,66 @@ export HOMEBREW_NO_ENV_HINTS=1
 # Export the full configuration flag if set
 if [ "${MACOS_CONFIG_FULL}" = "1" ]; then
     export MACOS_CONFIG_FULL=1
-    echo "Starting macOS configuration (FULL MODE - includes system-level settings)..."
-    echo "Profile: $PROFILE"
+    echo "🚀 Starting macOS configuration (FULL MODE - includes system-level settings)"
+    echo "📋 Profile: $PROFILE"
 else
-    echo "Starting macOS configuration (DEFAULT MODE - no sudo commands)..."
-    echo "Profile: $PROFILE"
-    echo "Use 'make full' to enable system-level settings."
+    echo "🚀 Starting macOS configuration (DEFAULT MODE - no sudo commands)"
+    echo "📋 Profile: $PROFILE"
+    echo "💡 Use 'make full' to enable system-level settings"
 fi
 
+echo ""
+echo "================================================================================================"
+echo ""
+
 # Run component scripts
-echo "Running Homebrew setup..."
+echo "📦 HOMEBREW SETUP"
+echo "──────────────────"
 bash "$PROJECT_ROOT/components/brew.sh"
 
-echo "Running Git configuration..."
+echo ""
+echo "🔧 GIT CONFIGURATION"
+echo "─────────────────────"
 bash "$PROJECT_ROOT/components/git.sh"
 
-echo "Running Rust configuration..."
+echo ""
+echo "🦀 RUST SETUP"
+echo "──────────────"
 bash "$PROJECT_ROOT/components/rust.sh"
 
-echo "Running Bun setup..."
+echo ""
+echo "🍞 BUN SETUP"
+echo "─────────────"
 bash "$PROJECT_ROOT/components/bun.sh"
 
-echo "Running SurrealDB setup..."
+echo ""
+echo "🗄️  SURREALDB SETUP"
+echo "────────────────────"
 bash "$PROJECT_ROOT/components/surreal.sh"
 
-echo "Running macOS system configuration..."
+echo ""
+echo "🍎 MACOS SYSTEM CONFIGURATION"
+echo "──────────────────────────────"
 bash "$PROJECT_ROOT/components/macos.sh"
 
-echo "Running wallpaper configuration..."
+echo ""
+echo "🖼️  WALLPAPER SETUP"
+echo "────────────────────"
 bash "$PROJECT_ROOT/components/wallpaper.sh"
 
-echo "Running VSCode configuration..."
+echo ""
+echo "💻 VSCODE CONFIGURATION"
+echo "────────────────────────"
 bash "$PROJECT_ROOT/components/vscode.sh"
 
-echo "Running ZSH configuration..."
+echo ""
+echo "🐚 ZSH CONFIGURATION"
+echo "─────────────────────"
 bash "$PROJECT_ROOT/components/zsh.sh"
 
-# Run profile-specific setup
+echo ""
+echo "👤 PROFILE-SPECIFIC SETUP"
+echo "──────────────────────────"
 if [ "$MACOS_CONFIG_PROFILE" = "personal" ]; then
     echo "Running personal profile setup..."
     bash "$PROJECT_ROOT/components/personal.sh"
@@ -77,4 +100,12 @@ elif [ "$MACOS_CONFIG_PROFILE" = "work" ]; then
     echo "No additional work profile setup needed"
 fi
 
-echo "macOS configuration complete!"
+echo ""
+echo "================================================================================================"
+echo ""
+echo "✅ macOS configuration complete!"
+echo ""
+echo "🔄 Next steps:"
+echo "   • Restart your terminal for ZSH changes to take effect"
+echo "   • Some system settings may require a restart"
+echo "   • Check 'make status' to verify your configuration"
