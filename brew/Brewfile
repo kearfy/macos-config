@@ -25,9 +25,7 @@ brew "node"
 brew "pnpm"
 brew "yarn"
 
-# Rust development
-brew "rustup-init"
-# Note: Run rustup-init and then use rustup to manage Rust toolchains
+# Rust development - handled by components/rust.sh
 
 # JavaScript/TypeScript tools
 brew "biome"
