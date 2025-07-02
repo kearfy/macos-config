@@ -1,4 +1,13 @@
-#!/bin# Check if profile is set
+#!/bin/bash
+
+# Handle interrupt signals (Ctrl+C) to exit cleanly
+trap 'echo ""; echo "❌ Configuration interrupted by user. Exiting..."; exit 130' INT TERM
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Check if profile is set
 if [ ! -f "$PROJECT_ROOT/.profile" ]; then
     echo "❌ No profile set. Running initial setup..."
     echo ""
@@ -9,16 +18,6 @@ if [ ! -f "$PROJECT_ROOT/.profile" ]; then
         echo "❌ Setup was not completed. Exiting."
         exit 1
     fi
-fi
-
-# Get the directory where this script is located
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-
-# Check if profile is set
-if [ ! -f "$PROJECT_ROOT/.profile" ]; then
-    echo "❌ No profile set. Please run 'make profile <name>' first."
-    exit 1
 fi
 
 # Read and export the current profile

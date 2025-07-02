@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Handle interrupt signals (Ctrl+C) to exit cleanly
+trap 'echo ""; echo "❌ Adoption interrupted by user. Exiting..."; exit 130' INT TERM
+
 # macOS Configuration Adoption Script
 # This script clones the repository and sets up the initial configuration
 # Usage: bash <(curl -s https://raw.githubusercontent.com/kearfy/macos-config/main/scripts/adopt.sh)
