@@ -66,6 +66,7 @@ add_dock_item "all" "/System/Volumes/Preboot/Cryptexes/App/System/Applications/S
 add_dock_item "all" "/Applications/Visual Studio Code.app" "Visual Studio Code"
 add_dock_item "all" "/Applications/Zed.app" "Zed"
 add_dock_item "all" "/Applications/iTerm.app" "iTerm2"
+add_dock_item "all" "/Applications/Surrealist.app" "Surrealist"
 add_dock_item "all" "/Applications/1Password.app" "1Password"
 add_dock_item "all" "/System/Applications/Music.app" "Apple Music"
 add_dock_item "all" "/System/Applications/Calendar.app" "Calendar"

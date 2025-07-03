@@ -69,6 +69,11 @@ echo "────────────────────"
 bash "$PROJECT_ROOT/components/surreal.sh"
 
 echo ""
+echo "🔍 SURREALIST SETUP"
+echo "────────────────────"
+bash "$PROJECT_ROOT/components/surrealist.sh"
+
+echo ""
 echo "🍎 MACOS SYSTEM CONFIGURATION"
 echo "──────────────────────────────"
 bash "$PROJECT_ROOT/components/macos.sh"
