@@ -44,6 +44,6 @@ rustup component add rustfmt clippy rust-analyzer
 
 # Add WASM targets
 echo "Adding WASM targets..."
-rustup target add wasm32-unknown-unknown wasm32-wasip1
+rustup target add wasm32-unknown-unknown wasm32-wasip1 wasm32-wasip2
 
 echo "🦀 Rust configuration complete!"
