@@ -33,6 +33,7 @@ brew "biome"
 # GUI Applications (Casks)
 cask "iterm2"
 cask "visual-studio-code"
+cask "cursor"
 cask "1password"
 cask "zed"
 cask "betterdisplay"
@@ -45,20 +46,3 @@ cask "chatgpt"
 cask "google-chrome"
 cask "insta360-link-controller"
 cask "docker"
-
-# Work profile applications (installed conditionally)
-# cask "linear-linear"  # Work only
-# cask "slack"          # Work only
-
-# Personal profile applications (installed conditionally)
-# cask "polymc"         # Personal only
-
-# Mac App Store applications
-mas "1Password for Safari", id: 1569813296
-mas "Flighty – Live Flight Tracker", id: 1358823008
-mas "Home Assistant", id: 1099568401
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
-mas "Reeder Classic.", id: 1529448980
-mas "TestFlight", id: 899247664

@@ -63,6 +63,7 @@ add_dock_item() {
 echo "Configuring dock for profile: $MACOS_CONFIG_PROFILE"
 
 add_dock_item "all" "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" "Safari"
+add_dock_item "all" "/Applications/Cursor.app" "Cursor"
 add_dock_item "all" "/Applications/Visual Studio Code.app" "Visual Studio Code"
 add_dock_item "all" "/Applications/Zed.app" "Zed"
 add_dock_item "all" "/Applications/iTerm.app" "iTerm2"

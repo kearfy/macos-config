@@ -89,6 +89,11 @@ echo "────────────────────────"
 bash "$PROJECT_ROOT/components/vscode.sh"
 
 echo ""
+echo "💻 CURSOR CONFIGURATION"
+echo "────────────────────────"
+bash "$PROJECT_ROOT/components/cursor.sh"
+
+echo ""
 echo "🐚 ZSH CONFIGURATION"
 echo "─────────────────────"
 bash "$PROJECT_ROOT/components/zsh.sh"

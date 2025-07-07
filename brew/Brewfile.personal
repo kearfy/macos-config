@@ -5,3 +5,13 @@ brew "openjdk@21"
 # Messaging apps
 mas "WhatsApp Messenger", id: 310633997
 mas "Telegram", id: 747648890
+
+# Mac App Store applications
+mas "1Password for Safari", id: 1569813296
+mas "Flighty – Live Flight Tracker", id: 1358823008
+mas "Home Assistant", id: 1099568401
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Word", id: 462054704
+mas "Reeder Classic.", id: 1529448980
+mas "TestFlight", id: 899247664
