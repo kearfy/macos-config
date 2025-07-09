@@ -62,7 +62,7 @@ add_dock_item() {
 # Define dock items in order with profile filters
 echo "Configuring dock for profile: $MACOS_CONFIG_PROFILE"
 
-add_dock_item "all" "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" "Safari"
+add_dock_item "all" "/Applications/Arc.app" "Arc"
 add_dock_item "all" "/Applications/Cursor.app" "Cursor"
 add_dock_item "all" "/Applications/Visual Studio Code.app" "Visual Studio Code"
 add_dock_item "all" "/Applications/Zed.app" "Zed"
@@ -134,11 +134,12 @@ defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false 2>/dev/nu
 defaults write NSGlobalDomain com.apple.AutoFillPasswords -bool false 2>/dev/null || true
 
 # Default Browser Settings
-echo "Setting Safari as default browser..."
+echo "Setting Arc as default browser..."
 # Check if defaultbrowser utility is available (installed via Homebrew)
 if command -v defaultbrowser &> /dev/null; then
-    defaultbrowser safari
-    echo "Safari set as default browser using defaultbrowser utility"
+    # Arc for some reason is called "browser"...
+    defaultbrowser browser
+    echo "Arc set as default browser using defaultbrowser utility"
 else
     echo "❌ Error: defaultbrowser utility not found"
     echo "Please install it with: brew install defaultbrowser"
