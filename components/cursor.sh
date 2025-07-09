@@ -75,6 +75,86 @@ echo "Installing Cursor extensions..."
 echo "Checking currently installed extensions..."
 INSTALLED_EXTENSIONS=$(cursor --list-extensions 2>/dev/null || echo "")
 
+# List of extensions known to be unavailable in Cursor
+UNAVAILABLE_EXTENSIONS=(
+    "dustypomerleau.rust-syntax"
+    "tamuratak.vscode-lezer"
+    "million.million-lint"
+    "maattdd.gitless"
+)
+
+# Function to check if extension is known to be unavailable
+is_unavailable() {
+    local ext_id="$1"
+    for unavailable in "${UNAVAILABLE_EXTENSIONS[@]}"; do
+        if [[ "$ext_id" == "$unavailable" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Function to manually download and install VS Code extension
+install_vscode_extension() {
+    local ext_id="$1"
+    local publisher="${ext_id%%.*}"
+    local name="${ext_id##*.}"
+    
+    echo "📦 Manually downloading $ext_id from VS Code marketplace..."
+    
+    # Create temp directory for downloads
+    local temp_dir=$(mktemp -d)
+    cd "$temp_dir"
+    
+    # Get extension info from VS Code marketplace API
+    local extension_info=$(curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery" \
+        -H "Content-Type: application/json" \
+        -H "Accept: application/json;api-version=3.0-preview.1" \
+        -d "{
+            \"filters\": [{
+                \"criteria\": [{
+                    \"filterType\": 7,
+                    \"value\": \"$ext_id\"
+                }]
+            }],
+            \"flags\": 215
+        }")
+    
+    # Extract download URL
+    local download_url=$(echo "$extension_info" | jq -r '.results[0].extensions[0].versions[0].files[] | select(.assetType=="Microsoft.VisualStudio.Services.VSIXPackage") | .source')
+    
+    if [[ "$download_url" == "null" || -z "$download_url" ]]; then
+        echo "✗ Failed to get download URL for $ext_id"
+        cd - > /dev/null
+        rm -rf "$temp_dir"
+        return 1
+    fi
+    
+    # Download the extension
+    local vsix_file="$name.vsix"
+    if curl -L -o "$vsix_file" "$download_url"; then
+        echo "✓ Downloaded $ext_id"
+        
+        # Install the downloaded extension
+        if cursor --install-extension "$vsix_file" --force 2>/dev/null; then
+            echo "✓ Successfully installed $ext_id from VS Code marketplace"
+            cd - > /dev/null
+            rm -rf "$temp_dir"
+            return 0
+        else
+            echo "✗ Failed to install downloaded extension $ext_id"
+            cd - > /dev/null
+            rm -rf "$temp_dir"
+            return 1
+        fi
+    else
+        echo "✗ Failed to download $ext_id"
+        cd - > /dev/null
+        rm -rf "$temp_dir"
+        return 1
+    fi
+}
+
 # Function to install extension with retry logic
 install_extension() {
     local ext_id="$1"
@@ -83,6 +163,13 @@ install_extension() {
     if echo "$INSTALLED_EXTENSIONS" | grep -q "^${ext_id}$"; then
         echo "✓ Extension $ext_id is already installed"
         return 0
+    fi
+    
+    # If extension is known to be unavailable, try manual download
+    if is_unavailable "$ext_id"; then
+        echo "🔄 Extension $ext_id not available in Cursor marketplace, trying manual download..."
+        install_vscode_extension "$ext_id"
+        return $?
     fi
     
     local attempts=3
@@ -107,8 +194,6 @@ install_extension() {
     return 1
 }
 
-# Install extensions with better error handling (excluding Copilot/ChatGPT)
-
 # Nix
 install_extension "bbenoist.nix"
 install_extension "jnoortheen.nix-ide"
@@ -118,7 +203,9 @@ install_extension "mkhl.direnv"
 install_extension "surrealdb.surrealql"
 install_extension "ms-vscode.makefile-tools"
 install_extension "rust-lang.rust-analyzer"
+
 install_extension "dustypomerleau.rust-syntax"
+
 install_extension "astro-build.astro-vscode"
 install_extension "biomejs.biome"
 install_extension "unifiedjs.vscode-mdx"
@@ -127,19 +214,31 @@ install_extension "mrmlnc.vscode-scss"
 install_extension "bradlc.vscode-tailwindcss"
 install_extension "oven.bun-vscode"
 install_extension "tauri-apps.tauri-vscode"
+
 install_extension "tamuratak.vscode-lezer"
+
 install_extension "ms-python.python"
 install_extension "ms-python.vscode-pylance"
 install_extension "ms-python.debugpy"
 
 # Productivity (excluding Copilot extensions)
 install_extension "cardinal90.multi-cursor-case-preserve"
+
 install_extension "million.million-lint"
+
 install_extension "yoavbls.pretty-ts-errors"
 install_extension "github.vscode-github-actions"
 install_extension "usernamehw.errorlens"
+
 install_extension "maattdd.gitless"
 
 echo "Cursor configuration complete!"
 echo "Settings applied and extensions installed."
-echo "Note: GitHub Copilot and ChatGPT extensions were excluded as requested."
+echo ""
+echo "Note: Attempted to install extensions from VS Code marketplace for:"
+echo "  - dustypomerleau.rust-syntax"
+echo "  - tamuratak.vscode-lezer"
+echo "  - million.million-lint"
+echo "  - maattdd.gitless"
+echo ""
+echo "GitHub Copilot and ChatGPT extensions were excluded as requested."
