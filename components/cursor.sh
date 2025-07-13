@@ -65,7 +65,8 @@ jq '. + {
     "editor.smoothScrolling": true,
     "terminal.integrated.smoothScrolling": true,
     "cursor.cpp.disabledLanguages": [],
-    "cursor.chat.alwaysSearchWeb": false
+    "cursor.chat.alwaysSearchWeb": false,
+    "workbench.activityBar.orientation": "vertical"
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 
 # Install extensions
