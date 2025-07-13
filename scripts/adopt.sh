@@ -61,6 +61,11 @@ echo ""
 # Change to the project directory
 cd "$TARGET_DIR"
 
+echo "🔑 Converting remote origin to SSH..."
+# Change remote origin from HTTPS to SSH
+git remote set-url origin "git@github.com:kearfy/macos-config.git"
+echo "✅ Remote origin updated to SSH"
+
 echo "🔧 Running initial configuration..."
 echo ""
 
