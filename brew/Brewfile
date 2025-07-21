@@ -47,3 +47,5 @@ cask "google-chrome"
 cask "insta360-link-controller"
 cask "docker"
 cask "arc"
+cask "claude" # Anthropic Claude AI desktop app
+cask "claude-code" # Claude Code and multi-agent terminal tool
