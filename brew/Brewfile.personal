@@ -1,4 +1,7 @@
 # Personal profile specific applications
+
+cask "chatgpt"
+
 # Java for Minecraft (OpenJDK)
 brew "openjdk@21"
 

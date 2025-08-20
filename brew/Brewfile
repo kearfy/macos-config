@@ -32,20 +32,14 @@ brew "biome"
 
 # GUI Applications (Casks)
 cask "iterm2"
-cask "visual-studio-code"
 cask "cursor"
 cask "1password"
-cask "zed"
 cask "betterdisplay"
 cask "discord"
 cask "figma"
-cask "notion"
 cask "postman"
 cask "airbuddy"
-cask "chatgpt"
 cask "google-chrome"
 cask "insta360-link-controller"
 cask "docker"
 cask "arc"
-cask "claude" # Anthropic Claude AI desktop app
-cask "claude-code" # Claude Code and multi-agent terminal tool
